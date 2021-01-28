@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import IndecisionApp from './components/IndecisionApp'; 
 class App extends Component {
 
-  state = {
+  state = { 
     alphaValue: 'Oh yes, data from Alpha!',
     counter: 1,
     app: {
@@ -26,10 +27,17 @@ class App extends Component {
       e.target.elements.option.value = '';
     }
 
+    //older method
     this.setState({
       counter: copyCounter,
       app: copyApp
     })
+
+   /* this.setState((prevState) =>{
+      return{
+
+      }
+    })*/
   }
 
   getOptions = (options) => {
@@ -43,23 +51,44 @@ class App extends Component {
     return undefined;
   }
 
+  onRemoveAll = () => {
+    let copyApp = this.state.app;
+    copyApp.options = [];
+   
+    this.setState({
+      app: copyApp
+    });
+
+  }
+
+  onMakeDecision = () => {
+    const randomNum = Math.floor(Math.random() * this.state.app.options.length);
+    const option = this.state.app.options[randomNum];
+    alert(option);
+    console.log(randomNum)
+  };
+
 
   render() {
     return (
       <div className="App">
-      {/*<h1>{this.state.counter}</h1>
+      <IndecisionApp />
+        {/*<h1>{this.state.counter}</h1>
         <Welcome name="Kagiso" />
-        <Comment  date={comment.date} text={comment.text} author={comment.author}/>*/}
+        <Comment  date={comment.date} text={comment.text} author={comment.author}/>
+        <Header />
         <h1>{this.state.app.title ? this.state.app.title : "Annonymous"}</h1>
         {this.state.app.subtitle && <p>{this.state.app.subtitle}</p>}
 
         <p>{this.state.app.options.length > 0 ? "Here are your options" : "No options"}</p>
         {this.getOptions(this.state.app.options)}
+        <button disabled={this.state.app.options.length === 0} onClick={this.onMakeDecision}>What should i do</button>
+        <button onClick={this.onRemoveAll}>Remove All</button>
 
         <form onSubmit={this.onFormSubmit}>
           <input type="text" name="option" />
           <button>Add Option</button>
-        </form>
+        </form>*/}
       </div>
     );
   }
