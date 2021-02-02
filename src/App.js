@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import IndecisionApp from './components/IndecisionApp'; 
 class App extends Component {
 
-  state = { 
+  /*state = { 
     alphaValue: 'Oh yes, data from Alpha!',
     counter: 1,
     app: {
@@ -10,9 +10,9 @@ class App extends Component {
       subtitle: "This is some info",
       options: []
     }
-  }
+  }*/
 
-  onFormSubmit = (e) => {
+  /*onFormSubmit = (e) => {
     e.preventDefault();
     console.log("click");
     console.log(this.state.counter);
@@ -33,14 +33,14 @@ class App extends Component {
       app: copyApp
     })
 
-   /* this.setState((prevState) =>{
+   this.setState((prevState) =>{
       return{
 
       }
-    })*/
-  }
+    })
+  }*/
 
-  getOptions = (options) => {
+  /*getOptions = (options) => {
     if (options.length > 0) {
       return (
         <ol>
@@ -66,7 +66,7 @@ class App extends Component {
     const option = this.state.app.options[randomNum];
     alert(option);
     console.log(randomNum)
-  };
+  };*/
 
 
   render() {

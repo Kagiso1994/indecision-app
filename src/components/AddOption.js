@@ -19,6 +19,14 @@ class AddOption extends React.Component {
                 error
             }
         });
+
+        if(!error){
+            e.target.elements.option.value = "";
+        }
+
+
+
+       
     }
 
     render() {
