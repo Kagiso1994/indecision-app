@@ -4,6 +4,7 @@ import Action from './Action';
 import AddOption from './AddOption';
 import Header from './Header';
 import Options from './Options';
+import OptionModal from './OptionModal';
 class IndecisionApp extends React.Component {
     constructor(props) {
         super(props);
@@ -12,9 +13,10 @@ class IndecisionApp extends React.Component {
         this.handleAddOption = this.handleAddOption.bind(this);
         this.handlePick = this.handlePick.bind(this);
         this.handleRemoveOption = this.handleRemoveOption.bind(this);
+        this.handleClearSelectedOption = this.handleClearSelectedOption.bind(this);
         this.state = {
             options: props.options,
-            random: -1
+            selectedOption: undefined
         };
     }
 
@@ -26,7 +28,7 @@ class IndecisionApp extends React.Component {
                 this.setState(() => ({ options }));
             }
         } catch (error) {
-            
+
         }
     }
 
@@ -63,17 +65,17 @@ class IndecisionApp extends React.Component {
         this.setState((prevState) => ({ options: prevState.options.filter((option) => optionToRemove !== option) }));
     }
 
+    handleClearSelectedOption() {
+        this.setState(() => ({ selectedOption: undefined }));
+    }
+
 
     handlePick() {
         const randomNum = Math.floor(Math.random() * this.state.options.length);
         const option = this.state.options[randomNum];
-        alert(option);
+        // alert(option);
 
-        /*this.setState(() => {
-            return {
-                random: option
-            }
-        })*/
+        this.setState(() => ({ selectedOption: option }));
 
 
 
@@ -111,6 +113,11 @@ class IndecisionApp extends React.Component {
                     handleDeleteOption={this.handleDeleteOption}
                 />
                 <AddOption handleAddOption={this.handleAddOption} />
+                <OptionModal
+                    selectedOption={this.state.selectedOption}
+                    handleClearSelectedOption={this.handleClearSelectedOption}
+                >
+                </OptionModal>
             </div>
         )
     }
